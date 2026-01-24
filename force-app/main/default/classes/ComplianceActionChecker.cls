@@ -312,7 +312,14 @@ global with sharing class ComplianceActionChecker {
 
             // TODO FOR THE CHALLENGE: Implement Formula Eval with ComplianceActionChecker.PenaltyContextWrapper.class type. 
             // You can copy the Formula Eval expression from the video: https://youtu.be/kCo3L27FjP0?si=YLerl6HNZ-moWN5U&t=5028  
-            
+            FormulaEval.FormulaInstance formulaDetails = Formula.builder()
+                .withReturnType(FormulaEval.FormulaReturnType.BOOLEAN)
+                .withType(PenaltyContextWrapper.class)
+                .withFormula(formulaText)
+                .build();
+
+            result = formulaDetails.evaluate(contextWrapper);
+            System.debug(result);
 
             Decimal penalty = 0;
             if (result instanceof Decimal) {
